@@ -3,13 +3,20 @@ build:
 
 RUN_CONTAINER=docker run -it --rm pthomison/tailscale:localbuild
 
+GIT_REV=$(shell git rev-parse --short HEAD)
+
 shell: build
 	$(RUN_CONTAINER) /bin/zsh
 
-tag:
+tag: build
 	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:latest
-	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:$(shell git rev-parse --short HEAD)
+	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:$(GIT_REV)
 
-push:
+push: tag
 	docker push pthomison/tailscale:localbuild  pthomison/tailscale:latest
-	docker push pthomison/tailscale:localbuild  pthomison/tailscale:$(shell git rev-parse --short HEAD)
+	docker push pthomison/tailscale:localbuild  pthomison/tailscale:$(GIT_REV)
+
+clean:
+	docker rmi \
+		pthomison/tailscale:localbuild \
+		pthomison/tailscale:latest
