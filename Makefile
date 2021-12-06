@@ -13,8 +13,8 @@ tag: build
 	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:$(GIT_REV)
 
 push: tag
-	docker push pthomison/tailscale:localbuild  pthomison/tailscale:latest
-	docker push pthomison/tailscale:localbuild  pthomison/tailscale:$(GIT_REV)
+	docker push pthomison/tailscale:latest
+	docker push pthomison/tailscale:$(GIT_REV)
 
 clean:
 	docker rmi \
