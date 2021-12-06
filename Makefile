@@ -8,4 +8,8 @@ shell: build
 
 tag:
 	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:latest
-	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:latest
+	docker tag pthomison/tailscale:localbuild  pthomison/tailscale:$(shell git rev-parse --short HEAD)
+
+push:
+	docker push pthomison/tailscale:localbuild  pthomison/tailscale:latest
+	docker push pthomison/tailscale:localbuild  pthomison/tailscale:$(shell git rev-parse --short HEAD)
