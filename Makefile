@@ -1,7 +1,7 @@
 build:
 	docker build . -t pthomison/tailscale:localbuild
 
-RUN_CONTAINER=docker run -it --rm pthomison/tailscale:localbuild
+RUN_CONTAINER=docker run -it --rm -v "/dev/net/tun:/dev/net/tun" --cap-add net_admin --cap-add sys_module pthomison/tailscale:localbuild
 
 GIT_REV=$(shell git rev-parse --short HEAD)
 
