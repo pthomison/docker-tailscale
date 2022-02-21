@@ -27,9 +27,3 @@ jobs:
       with:
         push: true
         tags: pthomison/tailscale:${{env.tag}}
-
-
-    # - name: Build the Docker image
-    #   run: docker build . --file Dockerfile --tag pthomison/tailscale:$(date +%s)
-    # - name: Push the Docker image
-    #   run: docker push pthomison/tailscale:$(date +%s)
