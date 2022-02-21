@@ -10,17 +10,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      tag: placeholder
+
     steps:
     - uses: actions/checkout@v2
     
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        push: true
-        tags: pthomison/tailscale:$(date +%s)
+        # push: true
+        tags: pthomison/tailscale:${{env.tag}}
 
 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag pthomison/tailscale:$(date +%s)
-    - name: Push the Docker image
-      run: docker push pthomison/tailscale:$(date +%s)
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag pthomison/tailscale:$(date +%s)
+    # - name: Push the Docker image
+    #   run: docker push pthomison/tailscale:$(date +%s)
