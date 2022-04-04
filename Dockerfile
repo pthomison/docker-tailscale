@@ -1,3 +1,3 @@
 FROM alpine:3.15
 
-RUN apk add zsh tailscale dumb-init
+RUN apk add zsh tailscale dumb-init socat
