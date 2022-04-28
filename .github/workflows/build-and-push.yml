@@ -20,6 +20,9 @@ jobs:
     - name: Set Tag
       run: echo "tag=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
+    - name: Set BaseImage Tag
+      run: echo "baseimage_tag=$(cat Dockerfile | grep FROM | cut -d ':' -f 2)" >> $GITHUB_ENV
+
     - name: Login to DockerHub
       uses: docker/login-action@v1 
       with:
@@ -31,4 +34,4 @@ jobs:
       with:
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: pthomison/tailscale:${{env.tag}}
+        tags: pthomison/tailscale:${{env.tag}},pthomison/tailscale:${{env.baseimage_tag}}
