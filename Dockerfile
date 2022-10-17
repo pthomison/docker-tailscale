@@ -1,4 +1,4 @@
-FROM tailscale/tailscale:v1.29.125
+FROM tailscale/tailscale:v1.33.19
 
 RUN apk update && apk upgrade
 
